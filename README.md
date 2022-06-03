@@ -1,2 +1,0 @@
-# watermelon-backend
-watermelon-backend
