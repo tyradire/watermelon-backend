@@ -14,7 +14,23 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-app.use(cors());
+
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'http://watermelon-shop.ru',
+    'http://www.watermelon-shop.ru',
+    'https://watermelon-shop.ru',
+    'https://www.watermelon-shop.ru',
+  ],
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'origin', 'Authorization'],
+  credentials: true,
+};
+
+app.use('*', cors(options));
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({}));
