@@ -11,13 +11,13 @@ const {
 } = require('./middlewares/sendError');
 const path = require('path');
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 
 const app = express();
 
 const options = {
   origin: [
-    'http://localhost:3000',
+    'http://localhost:7000',
     'http://watermelon-shop.ru',
     'http://www.watermelon-shop.ru',
     'https://watermelon-shop.ru',
