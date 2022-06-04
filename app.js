@@ -16,13 +16,7 @@ const PORT = process.env.PORT || 7000;
 const app = express();
 
 const options = {
-  origin: [
-    'http://localhost:7000',
-    'http://watermelon-shop.ru',
-    'http://www.watermelon-shop.ru',
-    'https://watermelon-shop.ru',
-    'https://www.watermelon-shop.ru',
-  ],
+  origin: '*',
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
