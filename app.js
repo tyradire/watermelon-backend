@@ -2,8 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const sequelize = require('./database');
 const { errors } = require('celebrate');
-const models = require('./models/models');
 const cors = require('cors');
+const models = require('./models/models');
 const fileUpload = require('express-fileupload');
 const appRouter = require('./routes/index');
 const { 
@@ -11,12 +11,16 @@ const {
 } = require('./middlewares/sendError');
 const path = require('path');
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
 const options = {
-  origin: '*',
+  origin: [
+    'http://localhost:3000',
+    'http://watermelon-shop.ru',
+    'https://watermelon-shop.ru',
+  ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
   preflightContinue: false,
   optionsSuccessStatus: 204,
@@ -29,6 +33,7 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({}));
 app.use(appRouter);
+
 app.use(errors());
 app.use(sendError);
 
