@@ -9,7 +9,7 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 
 const  createUser = (req, res, next) => {
   const {
-    email, password
+    email, password, role
   } = req.body;
   User.findOne({ 
     where: {
@@ -22,6 +22,7 @@ const  createUser = (req, res, next) => {
   })
   .then((hash) => User.create({
     password: hash, email,
+    role: role,
   }))
   .then((user) => {
     Basket.create({

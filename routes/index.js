@@ -34,6 +34,7 @@ appRouter.post('/signup', celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required().min(2),
+    role: Joi.string().required(),
   }),
 }), createUser);
 appRouter.post('/signin', login);
