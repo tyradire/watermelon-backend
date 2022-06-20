@@ -72,7 +72,8 @@ const Vendor = sequelize.define('vendor', {
   },
   name: { 
     type: DataTypes.STRING,
-    allowNull: false 
+    unique: true,
+    allowNull: false
   }
 });
 
