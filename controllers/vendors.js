@@ -1,4 +1,4 @@
-const { Vendor } = require('../models/models');
+const { Vendor, Product } = require('../models/models');
 const ConflictError = require('../errors/ConflictError');
 const CastError = require('../errors/CastError');
 const NotFoundError = require('../errors/NotFoundError');
@@ -26,13 +26,24 @@ const getVendors = (req, res, next) => Vendor.findAll()
   .catch(next);
 
 const deleteVendor = (req, res, next) => {
-  console.log('name req.body', req.body)
   const { name } = req.body;
-  console.log('name deleteVendor', name)
   Vendor.findOne({where: {name} })
-  .then((vendor) => vendor.destroy(name))
-  .then((item) => res.status(200).send({message: 'Вендор удалён'}))
-  .catch(next);
+  .then((vendor) => {
+    if (!vendor) throw new NotFoundError('Продавец не найден');
+    else {
+      return Product.destroy({
+        where: {vendorId: vendor.id},
+      });
+    }
+  })
+  .then((products) => {
+    return Vendor.destroy({
+      where: {name},
+    });
+  })
+  .then((item) => {
+    res.status(200).send({message: 'Вендор удалён'})
+  })
 }
 
 module.exports = {
