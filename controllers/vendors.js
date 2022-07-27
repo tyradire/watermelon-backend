@@ -11,7 +11,7 @@ const createVendor = (req, res, next) => {
       return;
     })
     .then((res) => Vendor.create({name}))
-    .then((vendor) => res.status(200).send({vendor}))
+    .then((vendor) => res.status(200).send(vendor))
     .catch((err) => {
       if (err.name === 'ValidationError') next(new CastError('Переданы некорректные данные при создании пользователя'));
       next(err);

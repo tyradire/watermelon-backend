@@ -7,10 +7,23 @@ const NotFoundError = require('../errors/NotFoundError');
 const createProduct = (req, res, next) => {
   let { 
     name, price, vendorId, info
-  } = req.body
-  const { img } = req.files;
-  let fileName = uuid.v4() + '.jpg';
-  img.mv(path.resolve(__dirname, '..', 'static', fileName));
+  } = req.body;
+  console.log('DO IMG', req.files)
+  ///////////////////////////////
+  let fileName; let img;
+  if (req.files) {
+    img = req.files.img;
+    fileName = uuid.v4() + '.jpg';
+    img.mv(path.resolve(__dirname, '..', 'static', fileName));
+  } else {
+    fileName = null;
+  }
+  //////////////////////////////
+  //const img = req.files ? req.files.img : null;
+  //const { img } = req.files || null;
+  //console.log('POSLE IMG')
+  //let fileName = uuid.v4() + '.jpg';
+  //img.mv(path.resolve(__dirname, '..', 'static', fileName));
   Product.create({name, price, vendorId, info, img: fileName})
   .then((product) => res.status(200).send(product)) //тут убрала скобки у продакта
   .catch((err) => {console.log(err)
