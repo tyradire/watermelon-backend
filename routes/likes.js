@@ -3,8 +3,8 @@ const {
   addLike, deleteLike, getLikes,
 } = require('../controllers/likes');
 
-likeRouter.post('/', addLike);
-likeRouter.delete('/', deleteLike);
-likeRouter.get('/', getLikes)
+likeRouter.post('/addlike/:id', addLike);
+likeRouter.delete('/deletelike/:id', deleteLike);
+likeRouter.get('/getlikes', getLikes);
 
 module.exports = likeRouter;

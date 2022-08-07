@@ -3,9 +3,9 @@ const {
   addBasketProduct, getBasketProducts, deleteBasketProduct, deleteOnePiece
 } = require('../controllers/baskets');
 
-basketRouter.post('/', addBasketProduct);
-basketRouter.get('/', getBasketProducts);
-basketRouter.delete('/', deleteBasketProduct);
-basketRouter.delete('/', deleteOnePiece);
+basketRouter.post('/addtobasket/:id', addBasketProduct);
+basketRouter.get('/getbasketproducts', getBasketProducts);
+basketRouter.delete('/deletebasketproduct/:id', deleteBasketProduct);
+basketRouter.delete('/deleteonepiece/:id', deleteOnePiece);
 
 module.exports = basketRouter;

@@ -1,9 +1,10 @@
 const vendorRouter = require('express').Router();
 const {
-  createVendor, getVendors,
+  createVendor, getVendors, deleteVendor,
 } = require('../controllers/vendors');
 
-vendorRouter.post('/', createVendor);
-vendorRouter.get('/', getVendors);
+vendorRouter.post('/addvendor', createVendor);
+vendorRouter.get('/getvendors', getVendors);
+vendorRouter.delete('/deletevendor', deleteVendor);
 
 module.exports = vendorRouter;

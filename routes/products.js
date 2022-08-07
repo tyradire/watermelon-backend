@@ -3,8 +3,8 @@ const {
   createProduct, getProducts, getOneProduct
 } = require('../controllers/products');
 
-productRouter.post('/', createProduct);
-productRouter.get('/', getProducts);
-productRouter.get('/', getOneProduct);
+productRouter.post('/addproduct', createProduct);
+productRouter.get('/getproducts', getProducts);
+productRouter.get('/getone/:id', getOneProduct);
 
 module.exports = productRouter;
