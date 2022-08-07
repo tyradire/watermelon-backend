@@ -1,10 +1,10 @@
-const likeRouter = require('express').Router();
+const likesRouter = require('express').Router();
 const {
   addLike, deleteLike, getLikes,
 } = require('../controllers/likes');
 
-likeRouter.post('/addlike/:id', addLike);
-likeRouter.delete('/deletelike/:id', deleteLike);
-likeRouter.get('/getlikes', getLikes);
+likesRouter.post('/addlike/:id', addLike);
+likesRouter.delete('/deletelike/:id', deleteLike);
+likesRouter.get('/getlikes', getLikes);
 
-module.exports = likeRouter;
+module.exports = likesRouter;
