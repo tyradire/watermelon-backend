@@ -25,10 +25,10 @@ appRouter.post('/signup', celebrate({
 appRouter.post('/signin', login);
 
 appRouter.use(verify);
-appRouter.use('/users', userRouter);
-appRouter.use('/vendor', vendorRouter);
-appRouter.use('/product', productRouter);
-appRouter.use('/basket', basketRouter);
-appRouter.use('/likes', likesRouter);
+appRouter.use(userRouter);
+appRouter.use(vendorRouter);
+appRouter.use(productRouter);
+appRouter.use(basketRouter);
+appRouter.use(likesRouter);
 
 module.exports = appRouter;
