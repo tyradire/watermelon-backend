@@ -4,7 +4,6 @@ const { celebrate, Joi } = require('celebrate');
 const {
   createUser, login,
 } = require('../controllers/users');
-
 const {
   verify,
 } = require('../middlewares/auth');
