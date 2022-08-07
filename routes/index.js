@@ -1,6 +1,5 @@
 const appRouter = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-
 const {
   createUser, login,
 } = require('../controllers/users');
