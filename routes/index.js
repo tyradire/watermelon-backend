@@ -4,6 +4,12 @@ const {
   createUser, login,
 } = require('../controllers/users');
 const {
+  getProducts, getOneProduct,
+} = require('../controllers/products');
+const {
+  getVendors,
+} = require('../controllers/vendors');
+const {
   verify,
 } = require('../middlewares/auth');
 
@@ -22,8 +28,11 @@ appRouter.post('/signup', celebrate({
 }), createUser);
 appRouter.post('/signin', login);
 
-appRouter.use(productRouter);
+appRouter.get('/getproducts', getProducts);
+appRouter.get('/getone/:id', getOneProduct);
+appRouter.get('/getvendors', getVendors);
 appRouter.use(verify);
+appRouter.use(productRouter);
 appRouter.use(userRouter);
 appRouter.use(vendorRouter);
 appRouter.use(basketRouter);

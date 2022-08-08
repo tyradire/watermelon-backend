@@ -9,7 +9,6 @@ const createProduct = (req, res, next) => {
     name, price, vendorId, info
   } = req.body;
   console.log('DO IMG', req.files)
-  ///////////////////////////////
   let fileName; let img;
   if (req.files) {
     img = req.files.img;
@@ -18,14 +17,8 @@ const createProduct = (req, res, next) => {
   } else {
     fileName = null;
   }
-  //////////////////////////////
-  //const img = req.files ? req.files.img : null;
-  //const { img } = req.files || null;
-  //console.log('POSLE IMG')
-  //let fileName = uuid.v4() + '.jpg';
-  //img.mv(path.resolve(__dirname, '..', 'static', fileName));
   Product.create({name, price, vendorId, info, img: fileName})
-  .then((product) => res.status(200).send(product)) //тут убрала скобки у продакта
+  .then((product) => res.status(200).send(product))
   .catch((err) => {console.log(err)
     if (err.name === 'ValidationError') next(new CastError('Переданы некорректные данные при создании пользователя'));
     next(err);
