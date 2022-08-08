@@ -22,10 +22,10 @@ appRouter.post('/signup', celebrate({
 }), createUser);
 appRouter.post('/signin', login);
 
+appRouter.use(productRouter);
 appRouter.use(verify);
 appRouter.use(userRouter);
 appRouter.use(vendorRouter);
-appRouter.use(productRouter);
 appRouter.use(basketRouter);
 appRouter.use(likesRouter);
 
